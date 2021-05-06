@@ -1,0 +1,36 @@
+digraph shapes{
+  rankdir = TB
+  splines="true"
+  start [texlbl="episode start", shape=ellipse]
+  t [texlbl="t←t+1", shape=box]
+  anticipatory [texlbl="sample anticipatory $\eta$", shape=diamond]
+  atsl [label="a_t\leftarrow policy_{sl}(s_t)", shape=box]
+  atrl [label="a_t\leftarrow policy_{rl}(s_t)", shape=box]
+  rssl [label="[r_{t+1},s_{t+1}]\leftarrow step(s_t)", shape=box]
+  rsrl [label="[r_{t+1},s_{t+1}]\leftarrow step(s_t)", shape=box]
+  storebhrl [texlbl="store behavior $(s_t,a_t)$", shape=box]
+  storetransl [texlbl="store transition $(s_t,a_t,r_{t+1},s_{t+1})$", shape=box]
+  storetranrl [texlbl="store transition $(s_t,a_t,r_{t+1},s_{t+1})$", shape=box]
+  learnsl [texlbl="learn $policy_{sl}$ in every $k$ step", shape=box]
+  learnrl [texlbl="learn $policy_{rl}$ in every $k$ step", shape=box]
+  slend [texlbl="if game end?", shape=diamond]
+  rlend [texlbl="if game end?", shape=diamond]
+  end [texlbl="episode end", shape=ellipse]
+ 
+  
+  start -> t
+  t->anticipatory
+  anticipatory ->atsl [label="\eta < 0.9", tailport="c"]
+  anticipatory ->atrl [label="\eta \ge 0.9", tailport="c"]
+  atsl -> rssl
+  atrl -> rsrl
+  rsrl -> storebhrl
+  rssl -> storetransl
+  storebhrl -> storetranrl
+  storetransl -> learnsl
+  storetranrl -> learnrl
+  learnsl -> slend
+  learnrl -> rlend
+  slend -> end
+  rlend -> end
+}

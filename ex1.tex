@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: start -> t
+  \draw [->] (27.0bp,72.205bp) .. controls (27.0bp,72.205bp) and (27.0bp,46.038bp)  .. (27.0bp,36.038bp);
+  % Node: start
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (12.0bp,72.5bp) .. controls (12.0bp,72.5bp) and (42.0bp,72.5bp)  .. (42.0bp,72.5bp) .. controls (48.0bp,72.5bp) and (54.0bp,78.5bp)  .. (54.0bp,84.5bp) .. controls (54.0bp,84.5bp) and (54.0bp,96.5bp)  .. (54.0bp,96.5bp) .. controls (54.0bp,102.5bp) and (48.0bp,108.5bp)  .. (42.0bp,108.5bp) .. controls (42.0bp,108.5bp) and (12.0bp,108.5bp)  .. (12.0bp,108.5bp) .. controls (6.0bp,108.5bp) and (0.0bp,102.5bp)  .. (0.0bp,96.5bp) .. controls (0.0bp,96.5bp) and (0.0bp,84.5bp)  .. (0.0bp,84.5bp) .. controls (0.0bp,78.5bp) and (6.0bp,72.5bp)  .. (12.0bp,72.5bp);
+  \draw (27.0bp,90.5bp) node {start episode};
+\end{scope}
+  % Node: t
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (54.0bp,36.0bp) -- (0.0bp,36.0bp) -- (0.0bp,0.0bp) -- (54.0bp,0.0bp) -- cycle;
+  \draw (27.0bp,18.0bp) node {t←t+1};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

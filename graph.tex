@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: start -> t
+  \draw [->] (177.0bp,710.81bp) .. controls (177.0bp,702.79bp) and (177.0bp,693.05bp)  .. (177.0bp,674.03bp);
+  % Edge: t -> anticipatory
+  \draw [->] (177.0bp,637.81bp) .. controls (177.0bp,629.79bp) and (177.0bp,620.05bp)  .. (177.0bp,601.03bp);
+  % Edge: anticipatory -> atsl
+  \draw [->] (168.0bp,567.54bp) .. controls (159.73bp,554.25bp) and (147.27bp,534.23bp)  .. (131.7bp,509.19bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (176.5bp,537.0bp) node {$\eta < 0.9$};
+  \draw (174.0bp,561.54bp) node {$$};
+  \draw (125.7bp,515.19bp) node {$$};
+  % Edge: anticipatory -> atrl
+  \draw [->] (186.64bp,567.54bp) .. controls (195.58bp,554.12bp) and (209.1bp,533.85bp)  .. (225.54bp,509.19bp);
+  \draw (233.5bp,537.0bp) node {$\eta \ge 0.9$};
+  \draw (192.64bp,561.54bp) node {$$};
+  \draw (219.54bp,515.19bp) node {$$};
+  % Edge: atsl -> rssl
+  \draw [->] (116.88bp,472.81bp) .. controls (114.94bp,464.7bp) and (112.58bp,454.84bp)  .. (108.08bp,436.03bp);
+  % Edge: atrl -> rsrl
+  \draw [->] (238.45bp,472.81bp) .. controls (239.13bp,464.79bp) and (239.95bp,455.05bp)  .. (241.56bp,436.03bp);
+  % Edge: rssl -> storetransl
+  \draw [->] (99.643bp,399.81bp) .. controls (97.586bp,391.7bp) and (95.085bp,381.84bp)  .. (90.317bp,363.03bp);
+  % Edge: rsrl -> storebhrl
+  \draw [->] (244.21bp,399.81bp) .. controls (244.78bp,391.79bp) and (245.46bp,382.05bp)  .. (246.8bp,363.03bp);
+  % Edge: storebhrl -> storetranrl
+  \draw [->] (248.48bp,326.81bp) .. controls (248.71bp,318.79bp) and (248.98bp,309.05bp)  .. (249.52bp,290.03bp);
+  % Edge: storetransl -> learnsl
+  \draw [->] (83.095bp,326.81bp) .. controls (81.739bp,318.79bp) and (80.093bp,309.05bp)  .. (76.878bp,290.03bp);
+  % Edge: storetranrl -> learnrl
+  \draw [->] (245.4bp,253.81bp) .. controls (243.23bp,245.7bp) and (240.59bp,235.84bp)  .. (235.56bp,217.03bp);
+  % Edge: learnsl -> slend
+  \draw [->] (80.3bp,253.88bp) .. controls (88.266bp,232.23bp) and (102.03bp,194.83bp)  .. (114.63bp,160.58bp);
+  % Edge: learnrl -> rlend
+  \draw [->] (228.75bp,180.97bp) .. controls (226.52bp,164.08bp) and (223.07bp,137.97bp)  .. (219.15bp,108.29bp);
+  % Edge: slend -> end
+  \draw [->] (123.61bp,128.42bp) .. controls (128.4bp,107.81bp) and (136.9bp,71.14bp)  .. (145.06bp,35.976bp);
+  % Edge: rlend -> end
+  \draw [->] (205.46bp,77.956bp) .. controls (196.08bp,68.155bp) and (182.56bp,54.036bp)  .. (163.93bp,34.588bp);
+  % Node: start
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (177.0bp,729.0bp) ellipse (39.0bp and 18.0bp);
+  \draw (177.0bp,729.0bp) node {episode start};
+\end{scope}
+  % Node: t
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (204.0bp,674.0bp) -- (150.0bp,674.0bp) -- (150.0bp,638.0bp) -- (204.0bp,638.0bp) -- cycle;
+  \draw (177.0bp,656.0bp) node {t←t+1};
+\end{scope}
+  % Node: anticipatory
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (177.0bp,601.0bp) -- (118.5bp,583.0bp) -- (177.0bp,565.0bp) -- (235.5bp,583.0bp) -- cycle;
+  \draw (177.0bp,583.0bp) node {sample anticipatory $\eta$};
+\end{scope}
+  % Node: atsl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (168.5bp,509.0bp) -- (73.5bp,509.0bp) -- (73.5bp,473.0bp) -- (168.5bp,473.0bp) -- cycle;
+  \draw (121.0bp,491.0bp) node {$a_t\leftarrow policy_{sl}(s_t)$};
+\end{scope}
+  % Node: atrl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (284.5bp,509.0bp) -- (189.5bp,509.0bp) -- (189.5bp,473.0bp) -- (284.5bp,473.0bp) -- cycle;
+  \draw (237.0bp,491.0bp) node {$a_t\leftarrow policy_{rl}(s_t)$};
+\end{scope}
+  % Node: rssl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (163.0bp,436.0bp) -- (45.0bp,436.0bp) -- (45.0bp,400.0bp) -- (163.0bp,400.0bp) -- cycle;
+  \draw (104.0bp,418.0bp) node {$[r_{t+1},s_{t+1}]\leftarrow step(s_t)$};
+\end{scope}
+  % Node: rsrl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (302.0bp,436.0bp) -- (184.0bp,436.0bp) -- (184.0bp,400.0bp) -- (302.0bp,400.0bp) -- cycle;
+  \draw (243.0bp,418.0bp) node {$[r_{t+1},s_{t+1}]\leftarrow step(s_t)$};
+\end{scope}
+  % Node: storetransl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (169.5bp,363.0bp) -- (2.5bp,363.0bp) -- (2.5bp,327.0bp) -- (169.5bp,327.0bp) -- cycle;
+  \draw (86.0bp,345.0bp) node {store transition $(s_t,a_t,r_{t+1},s_{t+1})$};
+\end{scope}
+  % Node: storebhrl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (306.5bp,363.0bp) -- (189.5bp,363.0bp) -- (189.5bp,327.0bp) -- (306.5bp,327.0bp) -- cycle;
+  \draw (248.0bp,345.0bp) node {store behavior $(s_t,a_t)$};
+\end{scope}
+  % Node: storetranrl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (333.5bp,290.0bp) -- (166.5bp,290.0bp) -- (166.5bp,254.0bp) -- (333.5bp,254.0bp) -- cycle;
+  \draw (250.0bp,272.0bp) node {store transition $(s_t,a_t,r_{t+1},s_{t+1})$};
+\end{scope}
+  % Node: learnsl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (148.0bp,290.0bp) -- (0.0bp,290.0bp) -- (0.0bp,254.0bp) -- (148.0bp,254.0bp) -- cycle;
+  \draw (74.0bp,272.0bp) node {learn $policy_{sl}$ in every $k$ step};
+\end{scope}
+  % Node: learnrl
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (305.0bp,217.0bp) -- (157.0bp,217.0bp) -- (157.0bp,181.0bp) -- (305.0bp,181.0bp) -- cycle;
+  \draw (231.0bp,199.0bp) node {learn $policy_{rl}$ in every $k$ step};
+\end{scope}
+  % Node: slend
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (120.0bp,163.0bp) -- (81.0bp,145.0bp) -- (120.0bp,127.0bp) -- (159.0bp,145.0bp) -- cycle;
+  \draw (120.0bp,145.0bp) node {if game end?};
+\end{scope}
+  % Node: rlend
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (217.0bp,109.0bp) -- (178.0bp,91.0bp) -- (217.0bp,73.0bp) -- (256.0bp,91.0bp) -- cycle;
+  \draw (217.0bp,91.0bp) node {if game end?};
+\end{scope}
+  % Node: end
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (149.0bp,18.0bp) ellipse (36.5bp and 18.0bp);
+  \draw (149.0bp,18.0bp) node {episode end};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

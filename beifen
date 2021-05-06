@@ -1,0 +1,155 @@
+  storetransl [label="\begin{array}
+                        \text{store transition},\\
+                        (s_t,a_t,r_{t+1},s_{t+1})
+                      \end{array}", shape=box]
+  storetranrl [label="\begin{array}
+                        \text{store transition},\\
+                        (s_t,a_t,r_{t+1},s_{t+1})
+                      \end{array}", shape=box]
+
+digraph shapes{
+  rankdir = TB
+  splines=ortho
+  start [texlbl="start episode", shape=ellipse]
+  t [texlbl="t←t+1", shape=box]
+  anticipatory [texlbl='sample anticipatory $η$', shape=diamond]
+  atsl [label='a_t\leftarrow policy_{sl}(s_t)', shape=box]
+  atrl [label='a_t\leftarrow policy_{rl}(s_t)', shape=box]
+  rssl [label='[r_{t+1},s_{t+1}]\leftarrow step(s_t)', shape=box]
+  rsrl [label='[r_{t+1},s_{t+1}]\leftarrow step(s_t)', shape=box]
+  storetransl [texlbl='store transition $(s_t,a_t,r_{t+1},s_{t+1})$', shape=box]
+  storetranrl [texlbl='store transition $(s_t,a_t,r_{t+1},s_{t+1})$', shape=box]
+ 
+  start -> t
+  t->anticipatory
+  anticipatory ->atsl [label='η<0.9']
+  anticipatory ->atrl [label='η⩾0.9']
+  atsl -> rssl
+  atrl -> rsrl
+  rssl -> storetransl
+  rsrl -> storetranrl
+}
+flowchart TD
+    start((episode start))
+    t["t←0"]
+    anticipatory{"sample anticipatory 𝜂"}
+    atsl["a<sub>t</sub>←Policy<sub>SL</sub>(s<sub>t</sub>)"] 
+    atrl["a<sub>t</sub>←Policy<sub>RL</sub>(s<sub>t</sub>)"]
+    rssl["[r<sub>t+1</sub>,s<sub>t+1</sub>]← step(s<sub>t</sub>)"]
+    rsrl["[r<sub>t+1</sub>,s<sub>t+1</sub>]← step(s<sub>t</sub>)"]
+    mrl[("Memory<sub>RL</sub>")]
+    msl[("Memory<sub>SL</sub>")]
+    storetransl["store transition tuple </br>(s<sub>t</sub>,a<sub>t</sub>,r<sub>t+1</sub>,s<sub>t+1</sub>)"]
+    storebhrl["store behavior tuple </br>(s<sub>t</sub>,a<sub>t</sub>)"]
+    storetranrl["store transition tuple </br>(s<sub>t</sub>,a<sub>t</sub>,r<sub>t+1</sub>,s<sub>t+1</sub>)"]
+    learnsl["learn Policy<sub>SL</sub> for every k step"]
+    learnrl["learn Policy<sub>RL</sub> for every k step"]
+    endrl{"if game end?"}
+    endsl{"if game end?"}
+    ende(("episode end"))
+    slt1["t←t+1"]
+    rlt1["t←t+1"]
+
+    start--> t
+    t --> anticipatory
+
+    endsl--"N"-->slt1
+    atsl---slt1
+    subgraph SL
+    atsl --> rssl
+    rssl --> storetransl
+    storetransl --> learnsl
+    end
+
+    subgraph Memory
+    mrl
+    msl
+    end
+
+    storetranrl -.-> mrl 
+    subgraph RL
+    atrl --> rsrl
+    rsrl --> storetranrl
+    storetranrl --> storebhrl
+    storebhrl --> learnrl
+    end
+    
+
+
+    anticipatory --"𝜂 < 0.9"--> atsl
+    anticipatory --"𝜂 ⩾ 0.9"--> atrl
+
+    storetransl -.-> mrl 
+    msl -.->learnsl
+    msl <-.- storebhrl  
+    mrl -.->learnrl
+
+    learnsl-->endsl
+    learnrl-->endrl
+
+    endsl--"Y"-->ende
+    endrl--"Y"-->ende
+    endrl--"N"-->rlt1
+    atrl---rlt1
+
+
+
+flowchart TD
+    start((episode start))
+    t["t←0"]
+    anticipatory{"sample anticipatory 𝜂"}
+    atsl["a<sub>t</sub>←Policy<sub>SL</sub>(s<sub>t</sub>)"] 
+    atrl["a<sub>t</sub>←Policy<sub>RL</sub>(s<sub>t</sub>)"]
+    rssl["[r<sub>t+1</sub>,s<sub>t+1</sub>]← step(s<sub>t</sub>)"]
+    rsrl["[r<sub>t+1</sub>,s<sub>t+1</sub>]← step(s<sub>t</sub>)"]
+    mrl[("Memory<sub>RL</sub>")]
+    msl[("Memory<sub>SL</sub>")]
+    storetransl["store transition tuple </br>(s<sub>t</sub>,a<sub>t</sub>,r<sub>t+1</sub>,s<sub>t+1</sub>)"]
+    storebhrl["store behavior tuple </br>(s<sub>t</sub>,a<sub>t</sub>)"]
+    storetranrl["store transition tuple </br>(s<sub>t</sub>,a<sub>t</sub>,r<sub>t+1</sub>,s<sub>t+1</sub>)"]
+    learnsl["learn Policy<sub>SL</sub> for every k step"]
+    learnrl["learn Policy<sub>RL</sub> for every k step"]
+    endsl{"if slgame end?"}
+    endrl{"if rlgame end?"}
+    ende(("episode end"))
+    slt1["t←t+1"]
+    rlt1["t←t+1"]
+
+    start--> t
+    t --> anticipatory
+
+    endsl--------->atsl
+    subgraph SL
+    atsl --> rssl
+    rssl --> storetransl
+    storetransl --> learnsl
+    end
+
+    subgraph Memory
+    mrl
+    msl
+    end
+
+    storetranrl -.-> mrl 
+    subgraph RL
+    atrl --> rsrl
+    rsrl --> storetranrl
+    storetranrl --> storebhrl
+    storebhrl --> learnrl
+    end
+    
+
+
+    anticipatory --"𝜂 < 0.9"--> atsl
+    anticipatory --"𝜂 ⩾ 0.9"--> atrl
+
+    storetransl -.-> mrl 
+    msl -.->learnsl
+    msl <-.- storebhrl  
+    mrl -.->learnrl
+
+
+    
+    endsl--"Y"-->ende
+    endrl--"Y"-->ende
+    endrl-->atrl
